@@ -1,0 +1,15 @@
+<table class="highlight responsive-table">
+	<thead>
+		<tr>
+			<th>Command URI</th>
+			<th>Parameter</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let command of module.httpConfig.supportedCommands; let iCommand = index">
+			<td>{{command.commandUri}}</td>
+			<td>{{command.parameterJson}}</td>
+		</tr>
+	</tbody>
+</table>
+            

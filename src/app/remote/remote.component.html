@@ -1,0 +1,11 @@
+<ng-container *ngFor="let outer of remoteButtons; let iOuter = index">
+	<ng-container *ngIf="iOuter % 4 === 0">
+		<div class="row">
+			<ng-container *ngFor="let remoteButton of remoteButtons | slice:iOuter:Math.min(remoteButtons.length, iOuter + 4); let iButton = index">
+				<div class="col s3 center">
+					<app-remote-button [remoteButton]=remoteButton (onClick)=buttonPressed($event)></app-remote-button>
+				</div>
+			</ng-container>
+		</div>
+	</ng-container>
+</ng-container>

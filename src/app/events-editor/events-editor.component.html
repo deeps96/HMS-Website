@@ -1,0 +1,39 @@
+<table class="striped centered responsive-table">
+	<thead>
+		<tr>
+			<th>Event-ID</th>
+			<th>Event</th>
+			<th>Remove</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let event of events; let iEvent = index">
+			<td style="font-weight: bold">{{iEvent}}</td>
+			<td>
+				<div class="row">
+				<div class="input-field col s12">
+					<input [id]="'target-url-' + iEvent" [name]="'target-url-' + iEvent" type="text" class="validate" [(ngModel)]="event.targetUrl">
+					<label [for]="'target-url-' + iEvent">Target-URL</label>
+				</div>
+				<div class="input-field col s12">
+					<textarea [id]="'content-' + iEvent" [name]="'content-' + iEvent" class="materialize-textarea" (change)="eventContentChanged($event, event);">{{JSON.stringify(event.content, null, '\t')}}
+					</textarea>
+					<label [for]="'content-' + iEvent">Content</label>
+				</div>
+			</div>
+			</td>
+			<td>
+				<i class="material-icons" (click)="deleteEvent(event);">delete</i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a class="btn-floating btn-medium waves-effect waves-light blue darken-4" (click)="addEvent();"><i class="material-icons">add</i></a>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</tbody>
+</table>

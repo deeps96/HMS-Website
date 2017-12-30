@@ -1,0 +1,65 @@
+<div class="section" *ngIf="editRule">
+	<div class="card-panel light-blue lighten-5">
+		<i class="material-icons white-text" style="float: left; cursor: pointer; padding-top: 9px; padding-left: 5px; font-size: 1.64rem; margin-top: -25px;" (click)="completed(editRule);">clear</i>
+		<h5 class="blue lighten-2 white-text center" style="padding: 5px; margin-left: -25px; margin-right: -25px; margin-top: -25px;">Edit {{editRule.name}}</h5>
+		<div class="row">
+			<form materialize class="col s12" style="padding-left: 10px;" (submit)="putRule(editRule); completed(editRule);">
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="name" name="name" type="text" class="validate" [(ngModel)]="editRule.name">
+						<label for="name">Name</label>
+					</div>
+					<div class="input-field col s6">
+						<input id="timeout" name="timeout" type="number" min="0" step="1" class="validate" [(ngModel)]="editRule.timeout">
+						<label for="timeout">Timeout in ms</label>
+					</div>
+				</div>
+				<div class="row">
+					<h6 class="col s12" style="font-weight: bold">Condition</h6>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="json-attribute-path" name="json-attribute-path" type="text" class="validate" [(ngModel)]="editRule.condition.jsonAttributePath">
+						<label for="json-attribute-path">JSON attribute path</label>
+					</div>
+					<div class="input-field col s6">
+						<input id="expected-value" name="expected-value" type="text" class="validate" [(ngModel)]="editRule.condition.expectedValue">
+						<label for="expected-value">Expected value</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="input-class-type" name="input-class-type" type="text" class="validate" [(ngModel)]="editRule.condition.inputClassType">
+						<label for="input-class-type">Event-class name</label>
+					</div>
+					<div class="input-field col s6">
+						<input id="command-uri" name="command-uri" type="text" class="validate" [(ngModel)]="editRule.condition.commandURI">
+						<label for="command-uri">Command-URI</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<select materialize="material_select" name="comparator" id="comparator" [(ngModel)]="editRule.condition.comparator" [materializeSelectOptions]="Comparator">
+							<option value="" disabled>Choose your option</option>
+							<option *ngFor="let option of Comparator | enumPipe" [value]="option.value">{{option.value}}</option>
+						</select>
+						<label for="comparator" >Comparator</label>
+					</div>
+					<div class="input-field col s6">
+						<select materialize="material_select" name="attribute-data-type" id="attribute-data-type" [(ngModel)]="editRule.condition.attributeDataType" [materializeSelectOptions]="SupportedDataType">
+							<option value="" disabled>Choose your option</option>
+							<option *ngFor="let option of SupportedDataType | enumPipe" [value]="option.value">{{option.value}}</option>
+						</select>
+						<label for="attribute-data-type">Data type of attribute</label>
+					</div>
+				</div>
+				<div class="row">
+					<app-events-editor [events]="editRule.events"></app-events-editor>
+				</div>
+				<button class="btn waves-effect waves-light white blue-text right" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

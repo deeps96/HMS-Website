@@ -1,0 +1,51 @@
+<table class="responsive-table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Active</th>
+			<th>Execute</th>
+			<th>Edit</th>
+			<th>Remove</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let rule of rules; let iRule = index">
+			<td>{{rule.name}}</td>
+			<td>
+				<input materialize [id]="'CheckBox' + iRule" [name]="'CheckBox' + iRule" type="checkbox" [checked]="rule.isActive ? 'checked' : null" (change)="updateState($event, rule)" />
+				<label [for]="'CheckBox' + iRule"></label>
+			</td>
+			<td>
+				<i class="material-icons" (click)="executeRule(rule)">play_arrow</i>
+			</td>
+			<td>
+				<i class="material-icons" (click)="toggleEditMode(rule)">edit</i>
+			</td>
+			<td>
+				<i class="material-icons" (click)="openModal(rule)">delete</i>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a class="btn-floating btn-medium waves-effect waves-light blue darken-4" (click)="createNewRule();"><i class="material-icons">add</i></a>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="divider"></div>
+<app-rule-editor [editRule]="editRule" (ruleStatus)="ruleEditorClose();"></app-rule-editor>
+
+<div class="modal bottom-sheet" materialize="modal" [materializeActions]="modalAction" *ngIf="deleteRule">
+	<div class="modal-content">
+	  <h4>Delete {{deleteRule.name}}</h4>
+	  <p>Dou you really want to delete this rule?</p>
+	</div>
+	<div class="modal-footer">
+	  <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Abort</a>
+	  <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="removeRule(deleteRule)">Agree</a>
+	</div>
+</div>

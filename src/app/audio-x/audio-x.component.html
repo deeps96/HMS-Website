@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="input-field col s6">
+		<select materialize="material_select" [materializeSelectOptions]="audioCoreParameters" (change)="audioCoreParameterChanged($event)">
+			<option value="" disabled selected>Choose your option</option>
+			<option *ngFor="let option of audioCoreParameters" [value]="option">{{option | extensionPipe}}</option>
+		</select>
+		<label>Audio Core Settings</label>
+	</div>
+	<div class="input-field col s6">
+		<select materialize="material_select" [materializeSelectOptions]="visualizationParameters" (change)="visualizationParameterChanged($event)">
+			<option value="" disabled selected>Choose your option</option>
+			<option *ngFor="let option of visualizationParameters" [value]="option">{{option | extensionPipe}}</option>
+		</select>
+		<label>Visualizer Mode</label>
+	</div>
+</div>
+<div class="row">
+	<div class="col s3 offset-s9">
+		<a class="waves-effect waves-light btn" (click)="stop()"><i class="material-icons">stop</i></a>
+		<a class="waves-effect waves-light btn" (click)="start()"><i class="material-icons">play_arrow</i></a>
+	</div>
+</div>

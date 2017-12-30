@@ -1,0 +1,50 @@
+<header>
+	<nav materialize class="nav-extended">
+		<div class="hide-on-small-only" style="display: inline;">
+			<div class="nav-wrapper">
+				<div class="brand-logo center">HMS - Home Management System</div>
+			</div>
+		</div>
+		<div class="nav-content">
+			<ul materialize [materializeParams]="[{swipeable: true}]" class="tabs tabs-transparent tabs-fixed-width">
+				<li materialize class="tab"><a href="#moduleManager" class="active"><img src="assets/images/ControlPanelIcon.png">Modules</a></li>
+				<li materialize class="tab" [ngClass]="{'disabled': !isRuleModuleRunning}"><a href="#rules"><img src="assets/images/Rules.png">Rules</a></li>
+				<li materialize class="tab"><a href="#pc"><img src="assets/images/PCIcon.png">PC</a></li>
+				<li materialize class="tab"><a href="#audioX"><img src="assets/images/Spotlight.png">AudioX</a></li>
+				<li materialize class="tab" [ngClass]="{'disabled': !isIRRemoteRunning}"><a href="#subwooferRemote"><img src="assets/images/SpeakerIcon.png">Subwoofer</a></li>
+				<li materialize class="tab" [ngClass]="{'disabled': !isIRRemoteRunning}"><a href="#lightCeilingRemote"><img src="assets/images/LightIcon.png">Licht</a></li>
+				<li materialize class="tab" [ngClass]="{'disabled': !isRadioRemoteRunning}"><a href="#radioRemote"><img src="assets/images/RadioIcon.png">Funk</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
+<main>
+	<div id="moduleManager" class="container z-depth-1 white col s12">
+		<app-module-list></app-module-list>
+	</div>
+	<div id="subwooferRemote" class="container z-depth-1 white col s12">
+		<app-remote [remoteButtons]="subwooferRemote" (onClick)=pressIRButton($event)></app-remote>
+	</div>
+	<div id="lightCeilingRemote" class="container z-depth-1 white col s12">
+		<app-remote [remoteButtons]="lightCeilingRemote" (onClick)=pressIRButton($event)></app-remote>
+	</div>
+	<div id="radioRemote" class="container z-depth-1 white col s12">
+		<app-remote [remoteButtons]="desktopRemote" (onClick)=pressRadioButton($event)></app-remote>
+	</div>
+	<div id="audioX" class="container z-depth-1 white col s12">
+		<app-audio-x></app-audio-x>
+	</div>
+	<div id="rules" class="container z-depth-1 white col s12">
+		<app-rules></app-rules>
+	</div>
+	<div id="pc" class="container z-depth-1 white col s12">
+		<app-pc-manager></app-pc-manager>
+	</div>
+</main>
+<footer materialize class="page-footer">
+	<div class="footer-copyright">
+		<div class="container center-align" style="margin: 0 auto; padding: 0;" >
+			© 2017 Deeps
+		</div>
+	</div>
+</footer>

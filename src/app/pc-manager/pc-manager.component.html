@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col s4 offset-s2">
+		<div class="switch">
+			<label>
+				PC herunterfahren
+				<input type="checkbox" [checked]="shouldBeOn" (click)="shouldBeOn = !shouldBeOn; updatePCState();">
+				<span class="lever"></span>
+				PC starten
+			</label>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="input-field col s6 offset-s2">
+		<select materialize="material_select" [materializeSelectOptions]="programs" (change)="programChanged($event)">
+			<option value="" disabled selected>Choose your option</option>
+			<option *ngFor="let option of programs" [value]="option">{{option}}</option>
+		</select>
+		<label>Program</label>
+	</div>
+	<div class="col s2">
+		<a class="waves-effect waves-light btn" style="margin-top: 20px;" (click)="startCurrentProgram()">Start program</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col s12">
+		<input type="range" value="10" min="0" max="100" data-show-value="true" data-popup-enabled="true" #ref (input)="changeVolume(ref.value)" />
+		<label>Volume</label>
+	</div>
+</div>

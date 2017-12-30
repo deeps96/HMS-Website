@@ -1,0 +1,17 @@
+ <i class="material-icons" style="float: right; cursor: pointer; margin-top: -22px;" (click)="longRefresh();">loop</i>
+<ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+	<li *ngFor="let module of moduleEntries; let iModule = index">
+		<div class="collapsible-header">
+		  {{Device[module.device]}} - <ng-container *ngIf="module.moduleInfo">{{module.moduleInfo.moduleType}} listening on port: {{module.moduleInfo.httpConfig.httpServerPort}}</ng-container>{{module.moduleID}}
+		  <span class="white-text badge green" *ngIf="module.moduleState === ModuleState.RUNNING" (click)="triggerModuleState(module); $event.stopPropagation()">Running</span>
+		  <span class="white-text badge yellow" *ngIf="module.moduleState === ModuleState.STANDBY" (click)="triggerModuleState(module); $event.stopPropagation()">Standby</span>
+		  <span class="white-text badge grey" *ngIf="module.moduleState === ModuleState.SHUTDOWN" (click)="triggerModuleState(module); $event.stopPropagation()">Offline</span>
+		</div>
+		<div class="collapsible-body" *ngIf="module.moduleInfo">
+			<app-module-list-entry [module]=module.moduleInfo></app-module-list-entry>
+		</div>
+	</li>
+</ul>
+<div class="progress" *ngIf="isRefreshing">
+	<div class="indeterminate"></div>
+</div>

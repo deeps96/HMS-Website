@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+//change primary color
+@import '~materialize-css/sass/components/_color.scss';
+$roboto-font-path: "~materialize-css/dist/fonts/roboto/";
+
+$primary-color: color("blue", "base");
+//$secondary-color: color("indigo", "lighten-1") !default;
+
+$table-striped-color: color("blue", "lighten-4");
+
+@import "~materialize-css/sass/materialize.scss";
+
+//used for sticky footer
+app-root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}

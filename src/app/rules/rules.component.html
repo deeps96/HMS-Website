@@ -1,0 +1,20 @@
+<ul materialize="tabs" class="tabs">
+	<li class="tab col s3"><a class="active" href="#start-events">Start events</a></li>
+	<li class="tab col s3"><a href="#rule-overview">Rules</a></li>
+	<li class="tab col s3"><a href="#stop-events">Stop events</a></li>
+</ul>
+<div id="rule-overview" class="col s12">
+	<app-rules-table></app-rules-table>
+</div>
+<div id="start-events" class="col s12">
+	<app-events-editor [events]="startEvents"></app-events-editor>
+	<a class="btn waves-effect waves-light white blue-text right" (click)="submitStartEvents()">Submit
+		<i class="material-icons right">send</i>
+	</a>
+</div>
+<div id="stop-events" class="col s12">
+	<app-events-editor [events]="stopEvents"></app-events-editor>
+	<a class="btn waves-effect waves-light white blue-text right" (click)="submitStopEvents()">Submit
+		<i class="material-icons right">send</i>
+	</a>
+</div>

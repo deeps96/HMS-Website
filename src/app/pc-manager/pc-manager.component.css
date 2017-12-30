@@ -1,0 +1,4 @@
+.switch label .lever {background-color: #F44336}
+.switch label .lever:after {background-color: #F44336}
+.switch label input[type=checkbox]:checked+.lever{background-color:#4CAF50}
+.switch label input[type=checkbox]:checked+.lever:after{background-color:#4CAF50}
